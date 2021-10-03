@@ -1,0 +1,112 @@
+モジュール宣言1
+module module_name;
+(val_1, val_2, ...); //途中で改行してもよい
+input wire val_1;
+input wire [7:0] val_2;
+output wire val_3;
+//なんちゃら
+endmodule 
+
+
+モジュール宣言2
+module module_name;
+(
+    input wire val_1,
+    input wire [7:0] val_2,
+    output wire val_3,
+    output reg val_4,
+    ...
+); //途中で改行してもよい
+//なんちゃら
+endmodule
+
+
+
+モジュール呼び出し1
+module_name instance_name
+(VAL_1, VAL_2,...);
+
+モジュール呼び出し2
+module_name instance_name
+(.val_1(VAL_1), .val_2(VAL_2),....);
+
+
+//コメント
+/*コメント*/
+
+input,output,inout
+3状態のやつに tri1, tri0がある(1,0,ハイインピーダンス)
+
+
+パラメータの指定
+module module_name;
+#(
+    parameter parameter_name = 11
+)
+(
+    input wire val_1,
+    input wire [7:0] val_2,
+    output val_3,
+    ...
+); //途中で改行してもよい
+//なんちゃら
+endmodule
+
+
+
+内部変数の定義
+reg variable_1
+reg [7:0] variable_2
+
+
+初期設定
+initial
+begin
+//なんちゃら
+end
+
+
+always@(posedge clk)
+begin
+//なんちゃら
+end
+
+
+
+assign output_val = なんちゃら
+reg_val <= なんちゃら
+
+wire: assign文でのみ代入可能
+reg: always文やfunction文などで代入可能
+
+
+
+タイミング調整
+`timescale 1ns / 1ps
+ns単位の割り込み（例えば開始後12.5142ns後に入るとする）をps単位に丸める（開始後12514psに割り込みが入る）
+
+
+
+
+テストベンチなど定期的なクロック信号の生成
+always #10000
+begin
+clk <= !clk; //など
+end
+
+
+
+非定期的に ‘1’（H レベル）と ‘0’（L レベル）を繰り返す信号の記述
+initial begin
+        reset = 0;
+#10000  reset = 1;
+#100    reset = 0;
+end
+
+
+クロック生成
+always begin
+        clock = 0;
+#5000   clock = 1;
+#5000;
+end
